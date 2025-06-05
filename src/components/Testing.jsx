@@ -15,11 +15,13 @@ const Testing = () => {
   const [done, setDone] = useState(false);
 
 
+  const isValidInput = (val) => /^[A-Za-z\s'-]+$/.test(val.trim());
+
   const handleSubmit = async (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       const value = inputValue.trim();
-      if (!value || processing) return;
+      if (!value || !isValidInput(value) || processing) return;
 
       if (step === 1) {
         setName(value);
@@ -112,6 +114,7 @@ const Testing = () => {
           </div>
         </div>
         </a>
+        {done && (
         <a style={{ display: 'inline-block' }} href="/result">
         <div className='invisible'>
           <div>
@@ -126,6 +129,7 @@ const Testing = () => {
           </div>
         </div>
         </a>
+        )}
       </div>
     </div>
     </>
