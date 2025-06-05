@@ -30,7 +30,8 @@ a{
     font-family: roobert, roobert Fallback;   
 }
 p {
-    display: block
+    display: block;
+    font-family: 'Roobert', 'roobert Fallback', sans-serif;
   }
 
 .header {
@@ -44,6 +45,7 @@ p {
     margin-bottom: calc(var(--spacing) * 3);  
     position: relative;
     z-index: 1000;
+    font-family: 'Roobert', 'roobert Fallback', sans-serif;
   }
   .pt-1 {
     display: flex;

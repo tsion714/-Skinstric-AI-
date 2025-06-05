@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import leftbracket from '../Assets/Rectangle 2710.png';
 import rightbracket from '../Assets/Rectangle 2711.png';
 import { gsap } from 'gsap';
+
 const Introduction = () => {
     const boxRef = useRef(null);
   
