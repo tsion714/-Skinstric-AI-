@@ -1,0 +1,99 @@
+.select-p{
+    font-size: 14px;
+    margin-top: 4px;
+    color: #6b7280;
+    text-transform: uppercase;
+    line-height: 24px;
+}
+.button-demographics{
+    width: 153.88px;
+    height: 153.88px;
+    background-color: #E5E7EB; 
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    transition: transform 300ms, background-color 300ms;
+}
+.button-demographics:hover {
+    background-color: #D1D5DB; 
+    transform: rotate(45deg) scale(1.05);
+  }
+  
+  .span-demofraphic{
+    transform: 'rotate(-45deg)',
+  }
+  .button-Cosmotiic {
+    width: 153.88px;
+    height: 153.88px;
+    background-color: #f3f4f6; 
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -1.25rem;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    cursor: not-allowed;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-Cosmotiic:hover {
+    background-color: #D1D5DB;
+  }
+  .span-Cosmotiic{
+    transform: rotate(-45deg);
+  }
+  .button-Skin{
+    width: 153.88px;
+    height: 153.88px;
+    background-color: #f3f4f6; 
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -1.25rem;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.01562em;
+    text-transform: uppercase;
+    cursor: not-allowed;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .button-Skin:hover{
+    background-color: #d1d5db;
+  }
+  .button-skintype{
+    transform: rotate(-45deg);
+  }
+  .button-weather{
+    width: 153.88px;
+    height: 153.88px;
+    background-color: #f3f4f6; 
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -1.25rem;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.01562em;
+    text-transform: uppercase;
+    cursor: not-allowed;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-weather:hover {
+    background-color: #d1d5db; 
+  }
+  .span-weather{
+    transform: rotate(-45deg);
+  }

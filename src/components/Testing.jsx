@@ -98,8 +98,8 @@ const Testing = () => {
           <button type='submit' className='submit-button'>Submit</button>
         </form>
         <img src={largediamond} alt="Large-Diamond" className='large-diamond'/>
-        <img src={mediumdiamond} alt="Medium-Diamond" className='Medium-diamond' />
-        <img src={smalldiamond}alt="Small-Diamond" className='Small-diamond' />
+        <img src={mediumdiamond} alt="Medium-Diamond" className='Medium-diamond'/>
+        <img src={smalldiamond}alt="Small-Diamond" className='Small-diamond'/>
       </div>
       <div className='testing-bottom'>
         <a href="/">

@@ -1,0 +1,234 @@
+.result-background{
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  position: relative;
+}
+.scan-face{
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  row-gap: -20px; 
+}
+.scan-your-face{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-1%);
+}
+.result-diamond{
+    width: 270px;
+    height: 270px;
+}
+.result-largediamond{
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  transform: rotate(200deg);
+  animation: diamond-spin-large 8s linear infinite;
+}
+.result-mediumiamond{
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    transform: rotate(190deg);
+    animation: diamond-spin-medium 12s linear infinite;
+}
+.result-smalldiamond{
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  animation: diamond-spin-small 20s linear infinite;
+}
+.galllery,
+.camera{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 700ms ease-in-out;
+}
+.galllery:hover{
+transform: scale(1.08);
+}
+.camera:hover{
+    transform: scale(1.08); 
+}
+.allow-ai{
+    position: absolute;
+    bottom: 1%;
+    right: 90px;
+    transform: translateY(-20px);
+}
+.allowai-p{
+  font-size: 12px; 
+  font-weight: 400;
+  margin-top: 4px; 
+  line-height: 24px; 
+}
+.scanline{
+  position: absolute;
+  display: none;
+}
+.left-scan-your-face{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem; 
+  transform: translateY(-10%);
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.left-allow-ai{
+  position: absolute;
+  top: 75%;
+  transform: translateY(-10px);
+}
+.left-allowai-p{
+  font-size: 12px;
+  line-height: 24px;
+  margin-top: 8px;
+  text-align: right;
+}
+.left-scanline{
+  position: absolute;
+  display: none;
+}
+.result--back-button{
+  padding-top: 1rem;          
+  padding-bottom: 2rem;        
+  background-color: white;     
+  bottom: 30.5px;              
+  margin-bottom: 0;              
+}
+
+@media (min-width: 768px) {
+  .result-background{
+    padding-top: 64px;
+  }
+    .scan-face {
+      flex: 1;
+      flex-direction: row;
+      margin-bottom: 30px;
+      row-gap: 0;
+    }
+    .scan-your-face{ 
+        position: absolute;
+        left: 55%;
+        transform: translateY(0%) translateX(-100%);
+      }
+      .result-diamond{
+        width: 482px;
+        height: 482px;
+      }
+      .result-largediamond{
+        width: 482px;
+        height: 482px;
+      }
+      .result-mediumiamond{
+        width: 444.34px;
+        height: 444.34px;
+      }
+      .result-smalldiamond{
+        width: 405.18px;
+        height: 405.18px;
+      }
+      .galllery,
+      .camera{
+        width: 136px;
+        height: 136px;
+      }
+      .allow-ai{
+        top: 14.9%;
+        bottom: auto;
+        right: -120px;
+      }
+      .allowai-p{
+        font-size: 13px;
+        line-height: 20px;
+      }
+      .scanline{
+        display: block;
+        right: 143px;
+        top: 20px;
+      }
+      .left-scan-your-face{
+        position: absolute;
+        left: 45%;
+        margin-top: 0;
+        transform: translateY(0%);
+      }
+      .left-allow-ai{
+        top: 88%;
+        left: -80px;
+      }
+      .left-allowai-p{
+        font-size: 13px;
+      }
+    .left-scanline{
+      display: block;
+      left: 120px;
+      bottom: 39px;
+    }
+   .result--back-button{
+    padding-top: 0;            
+    position: static;          
+    margin-bottom: 0; 
+   }
+
+}
+@media (min-width: 1024px) {
+    .scan-your-face {
+      left: 50%;
+    }
+    .left-scan-your-face{
+      left: 50%;
+    }
+  }
+@media (min-width: 1280px) {
+    .scan-face {
+      justify-content: center;
+    }
+    .scan-your-face{
+        left: 40%;
+      }
+      .left-scan-your-face{
+        left: 55%;
+      }
+  }
+  @keyframes diamond-spin-large {
+    0% {
+      transform: rotate(200deg);
+    }
+    100% {
+      transform: rotate(560deg); 
+    }
+  }
+
+  @keyframes diamond-spin-medium {
+    0% {
+      transform: rotate(190deg);
+    }
+    100% {
+      transform: rotate(550deg); 
+    }
+  }
+
+  @keyframes diamond-spin-small {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

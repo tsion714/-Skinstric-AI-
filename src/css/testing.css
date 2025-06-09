@@ -58,6 +58,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) rotate(190deg);
     width: 480px;
     height: 480px;
     animation: spin-slow 20s linear infinite;
@@ -66,6 +67,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) rotate(185deg);
     width: 400px;
     height: 400px;
     animation: spin-from-185 28s linear infinite;
