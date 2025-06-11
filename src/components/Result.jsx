@@ -14,7 +14,7 @@ const Result = () => {
   const inputRef = useRef(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [analysisDone, setAnalysisDone] = useState(false);
 
   const handlePick = () => {
     inputRef.current.click();
@@ -36,19 +36,25 @@ const Result = () => {
       setPreview(base64);
 
       try {
-        const res = await axios.post('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo', {image:base64}); 
-        const { age, gender, race } = res.data;
-        console.log({ age, gender, race });
+        const res = await axios.post('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo', {image:base64});
+        console.log('Full API response:', res.data); 
+        const { age, gender, race } = res.data.data;
+        localStorage.setItem('analysisResult', JSON.stringify({ age, gender, race }));
+        console.log('Analysis Result:', { age, gender, race });
+        setAnalysisDone(true);
       } catch (err) {
         console.error('Analysis failed:', err);
       }
-
       setTimeout(() => {
         setLoading(false);
-        window.location.href = '/select';
       }, 10000);
+
     };
   };
+  const handleOkClick = () => {
+    window.location.href = '/select';
+  };
+
   return (
     <>
     {loading ? (
@@ -164,6 +170,15 @@ const Result = () => {
           </div>
          </div>
 </div>
+)}
+    {analysisDone && (
+  <>
+    <div className="overlay-blur" />
+    <div className="analysis-modal">
+      <p style={{color: '#fff'}}>Image analyzed successfully!</p>
+      <button onClick={handleOkClick}>OK</button>
+    </div>
+  </>
 )}
          </>
   )

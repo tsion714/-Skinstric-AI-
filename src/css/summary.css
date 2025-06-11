@@ -1,0 +1,271 @@
+.summary{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-summary{
+    flex: 1;
+    width: 100%;
+    background-color: 'white';
+    overflow: auto;
+}
+.summary-container{
+    max-width: 100%;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.summary-head{
+    text-align: start;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+.summary-h1{
+    all: unset;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.summary-h3{
+    font-size: 36px;
+    line-height: 64px;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+}
+.demographics-head{
+    display: grid;
+    gap: 16px;
+    margin-top: 40px;
+    margin-bottom: 160px;
+    padding-bottom: 0;
+}
+.demogrpahics-race{
+    background-color: white; 
+    height: 62%;
+    margin-top: 12px;
+  }
+  .summery-race{
+    padding: 12px;
+    cursor: pointer;
+    background-color: #1A1B1C;
+    color: white;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    margin-bottom: 12px;
+    height: 77px;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid #e5e7eb;
+    transition: background-color 0.3s ease; 
+  }
+  .summery-race:hover{
+    background-color: black;
+  }
+  .summery-age{
+  padding: 12px;                     
+  cursor: pointer;                  
+  background-color: #F3F3F4;       
+  flex: 1;                         
+  display: flex;   
+  margin-bottom: 12px;
+  height: 77px;                 
+  flex-direction: column;         
+  justify-content: space-between;  
+  border-top: 1px solid #000000;    
+  transition: background-color 0.2s ease;
+  }
+  .summery-age:hover{
+     background-color: #E1E1E2;
+  }
+  .percentage{
+    position: relative;                  
+    background-color: #f3f4f6;           
+    padding: 1rem;                      
+    display: flex;                      
+    flex-direction: column;             
+    align-items: center;                
+    justify-content: center;            
+  }
+  .percentage-race{
+  display: none;         
+  font-size: 40px;       
+  margin-bottom: 8px;
+  font-weight: 300; 
+  left: 20px;
+  top: 8px;
+  }
+
+  .percentage-race::first-letter{
+    text-transform: uppercase;
+  }
+  .race-container{
+    position: relative;          
+    width: 100%;                
+    max-width: 384px;         
+    aspect-ratio: 1 / 1;         
+    margin-bottom: 16px;
+  }
+  .percentage-p{
+    font-size: 12px;
+    color: #A0A4AB;
+    font-weight: 400; 
+    margin-bottom: 4px;
+    line-height: 24px;
+  }
+  .AI-confidence-container{
+    background-color: #f3f4f6; 
+  padding-top: 16px;         
+  padding-bottom: 16px; 
+  }
+  .highest-percentage{
+  display: flex;                    
+  align-items: center;             
+  justify-content: space-between;   
+  height: 48px;                     
+  padding-left: 16px;              
+  padding-right: 16px;            
+  cursor: pointer;             
+  background-color: #1A1B1C;       
+  color: white; 
+  }
+  .highest-percentage:hover{
+    background-color: black; 
+  }
+  .highest-percentage span::first-letter{
+    text-transform: uppercase;
+  }
+  .second-percentage{
+    display: flex;                     
+    align-items: center;              
+    justify-content: space-between;   
+    height: 48px;                    
+    padding-left: 16px;               
+    padding-right: 16px;           
+    cursor: pointer;              
+    transition: background-color 0.3s;
+  }
+  .second-percentage:hover{
+    background-color: #E1E1E2;
+  }
+  .second-percentage span{
+    color: black;
+  }
+  .second-percentage span::first-letter{
+    text-transform: uppercase;
+  }
+  .summery-bottom{
+  padding-top: 16px;        
+  padding-bottom: 24px;     
+  background-color: white;
+  position: sticky;
+  bottom: 160px;           
+  margin-bottom: 32px;      
+  }
+  .summerybottom-container{
+    display: flex;                  
+    justify-content: space-between;
+    max-width: 100%;                
+    margin-left: auto;               
+    margin-right: auto;
+    padding-left: 16px;              
+    padding-right: 16px;
+  }
+@media (min-width: 768px) {
+    .summary {
+      height: 90vh;
+      margin-top: 20px;
+    }
+    .main-summary{
+        overflow: hidden;
+    }
+    .summary-container{
+        height: 100%;
+        padding-left: auto;
+        padding-right: auto;
+    }
+    .summary-head{
+        margin-left: 0;
+        margin-bottom: 2.5rem;
+    }
+    .summary-h1{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .summary-h3{
+        font-size: 72px;
+    }
+    .demographics-head{
+    grid-template-columns: 1.5fr 8.5fr 3.15fr;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+    }
+    .demogrpahics-race{
+    display: flex;
+    flex-direction: column;
+    }
+    .summery-race{
+        height: 104.141px;
+    }
+    .summery-age{
+     height: 104.141px;
+    }
+    .percentage{
+        height: 57vh;                    
+        border-top: 1px solid #e5e7eb;  
+      }
+      .percentage-race{
+        display: block;
+        position: absolute;
+      }
+      .race-container{
+        position: absolute;        
+        right:20px;
+        bottom:8px;
+      }
+      .percentage-p{
+        position: absolute;
+        font-size: 14px;
+        bottom: -15%;
+        left: 22%;
+      }
+      .AI-confidence-container{
+        border-top: 1px solid #e5e7eb;
+      }
+      .summery-bottom{
+        padding-top: 37px;
+        position: static;
+        bottom: 0px;
+        margin-bottom: 64px;     
+      }
+      .summerybottom-container{
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+    @media (min-width: 1024px) {
+        .percentage-p {
+          font-size: 16px;
+          left: 30%;
+        }
+      }
+      @media (min-width: 1280px) {
+        .percentage-p {
+          left: 40%;
+        }
+      }
+      
+      @media (min-width: 1536px) {
+        .percentage-p {
+          left: 45%;
+        }
+      }
+      
+      

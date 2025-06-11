@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import leftbracket from '../Assets/Rectangle 2710.png';
 import rightbracket from '../Assets/Rectangle 2711.png';
 import '../css/select.css';
@@ -7,6 +7,22 @@ import mediumdiamond from '../Assets/Rectangle 2779.png';
 import largediamond from '../Assets/Rectangle 2780.png';
 
 const Select = () => {
+  const [analysis, setAnalysis] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  useEffect(() => {
+    const savedAnalysis = localStorage.getItem('analysisResult');
+    const savedImage = localStorage.getItem('previewImage');
+
+    if (savedAnalysis) {
+      setAnalysis(JSON.parse(savedAnalysis));
+      console.log('Loaded Analysis:', JSON.parse(savedAnalysis));
+    }
+
+    if (savedImage) {
+      setPreviewImage(savedImage);
+    }
+  }, []);
   return (
     <div>
       <>
@@ -47,7 +63,7 @@ const Select = () => {
             </div>
             <div style={{  inset: '0px', position: 'absolute', zIndex: 10, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(3, 1fr)', gap: 0, width: '341.625px', height: '341.625px'}}>
               <div style={{  display: 'flex',  alignItems: 'center',  justifyContent: 'center',  gridColumnStart: 2,}}>
-                <a href="/summery">
+                <a href="/summary">
                 <button className='button-demographics'>
                   <span className='span-demofraphics'>Demographics</span>
                 </button>
@@ -89,7 +105,7 @@ const Select = () => {
           </div>
         </div>
         </a>
-        <a style={{ display: 'inline-block' }} href="/summery">
+        <a style={{ display: 'inline-block' }} href="/summary">
         <div className='invisible'>
           <div>
             <div className='Procced'>
