@@ -203,7 +203,7 @@ useEffect(() => {
                     )}
                      <div className='summery-bottom'>
                       <div className='summerybottom-container'>
-        <a href="/testing">
+        <a href="/select">
         <div>
           <div className='back'>
             <span className='back-button'>BACK</span>

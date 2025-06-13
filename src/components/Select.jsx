@@ -93,7 +93,7 @@ const Select = () => {
         </div>
         <div>
         <div className='testing-bottom'>
-        <a href="/testing">
+        <a href="/result">
         <div>
           <div className='back'>
             <span className='back-button'>BACK</span>

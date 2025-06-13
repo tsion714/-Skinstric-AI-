@@ -1,0 +1,30 @@
+.camerapage-box{
+
+  width: 270px;
+  height: 270px;
+}
+.getbetter-results{
+  font-size:  12px;
+  margin-bottom: 16px;
+  line-height: 24px;
+}
+.expression-p{
+    font-size: 12px;
+    line-height: 24px;
+}
+@media (min-width: 768px) {
+    .camera-page {
+        width: 200px;
+        height: 200px;
+      }
+      .camerapage-box{
+        width: 482px;
+        height: 482px;
+      }
+      .getbetter-results{
+        font-size: 14px
+      }
+      .expression-p{
+        font-size: 14px;
+      }
+}

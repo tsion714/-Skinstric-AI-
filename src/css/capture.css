@@ -1,0 +1,85 @@
+.takepicture{
+    transition: transform 300ms ease-in-out;
+}
+
+.takepicture:hover{
+    transform: scale(1.05);
+}
+.capture-footer{
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 20;  
+}
+.capturebottom{
+  position: absolute;
+  bottom: 240px;
+  left: 32px;
+  z-index: 20;
+}
+
+.capture-preview{
+    position: absolute;
+    bottom: 160px;           
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.capture-h2{
+    font-size: 18px;
+    font-weight: 600;            
+    margin-bottom: 20px;         
+    color: #FCFCFC;           
+    filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+}
+.retake-pic{
+    padding-left: 16px;       
+    padding-right: 16px;
+    padding-top: 4px;         
+    padding-bottom: 4px;
+    background-color: #E5E7EB; 
+    color: #1F2937;            
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  }
+  .retake-pic:hover{
+    background-color: #D1D5DB;
+  }
+  .usePhoto{
+    padding-left: 24px;         
+    padding-right: 24px;
+    padding-top: 8px;         
+    padding-bottom: 8px;
+    background-color: #1A1B1C;
+    color: #FCFCFC;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    font-size:  14px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .usePhoto:hover{
+    background-color: #27272A;
+  }
+@media (min-width: 640px) {
+    .capture-footer {
+      bottom: 160px;
+    }
+    .capture-preview{
+        bottom: 64px;  
+    }
+  }
+  @media (min-width: 768px) {
+    .capturebottom {
+      bottom: 32px;
+    }
+    .capture-h2{
+        margin-bottom: 28px;  
+    }
+  }

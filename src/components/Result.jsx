@@ -10,17 +10,55 @@ import galllery from '../Assets/gallery-icon.png'
 import scanline from '../Assets/Vector 1.png'
 import leftscanline from '../Assets/Union.png'
 import axios from 'axios';
+
 const Result = () => {
   const inputRef = useRef(null);
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [analysisDone, setAnalysisDone] = useState(false);
+  const [showPermissionModal, setShowPermissionModal] = useState(false);
+
 
   const handlePick = () => {
     inputRef.current.click();
   };
 
+  const handleTakePhoto = async () => {
+    setShowPermissionModal(false);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      const video = document.createElement('video');
+      const canvas = document.createElement('canvas');
+      video.srcObject = stream;
+      await video.play();
+  
+      video.onloadedmetadata = () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        setTimeout(() => {
+          canvas.getContext('2d').drawImage(video, 0, 0);
+          const base64 = canvas.toDataURL('image/png');
+          stream.getTracks().forEach(track => track.stop());
+          setPreview(base64);
+          localStorage.setItem('previewImage', base64);
+          sendToAPI(base64);
+        }, 1000);
+      };
+    } catch (err) {
+      console.error('Camera access denied or failed:', err);
+    }
+  };
+  
+
+
+const handleAllow = () => {
+  setShowPermissionModal(false);
+  window.location.href = '/camera';
+  };
  
+const handleDeny = () => {
+  setShowPermissionModal(false);
+};
   const handleChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -34,7 +72,10 @@ const Result = () => {
       const base64 = reader.result;
       localStorage.setItem('previewImage', base64);
       setPreview(base64);
-
+      sendToAPI(base64);
+    };
+  };
+  const sendToAPI = async (base64) => {
       try {
         const res = await axios.post('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo', {image:base64});
         console.log('Full API response:', res.data); 
@@ -47,10 +88,10 @@ const Result = () => {
       }
       setTimeout(() => {
         setLoading(false);
-      }, 10000);
+      }, 1000);
 
     };
-  };
+
   const handleOkClick = () => {
     window.location.href = '/select';
   };
@@ -92,7 +133,7 @@ const Result = () => {
          </div>
          <button className='button-simple'>ENTER CODE</button>
        </div>
-       <div className='result-background'>
+       <div style={{ filter: showPermissionModal ? 'blur(1px)' : 'none', transition: 'filter 0.3s ease'}} className='result-background'>
          <div className='start-analysis'>
            <p className='start-analysis-p'>TO START ANALYSIS</p>
          </div>
@@ -104,7 +145,7 @@ const Result = () => {
                <img className='result-mediumiamond' src={mediumdiamond} alt="Medium-Diamond"/>
                <img className='result-smalldiamond'src={smalldiamond}alt="Small-Diamond" />
                <div style={{position: 'absolute', width: '270px', height: '270px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
-                <img  className='camera'src={camera} alt="" />
+                <img  className='camera'src={camera} alt="" onClick={() => setShowPermissionModal(true)} />
                 <div className='allow-ai'>
                     <p className='allowai-p'>
                       ALLOW A.I. 
@@ -179,6 +220,29 @@ const Result = () => {
       <button onClick={handleOkClick}>OK</button>
     </div>
   </>
+)}
+{showPermissionModal && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 999,
+    }}
+  >
+    <div style={{ backgroundColor: '#1A1B1C', paddingTop: '16px', paddingBottom: '8px',}}>
+      <h2 style={{ color: '#FCFCFC',  fontSize: '16px', fontWeight: 600, marginBottom: '48px', lineHeight: '24px',  paddingLeft: '16px',paddingRight: '16px' }}>ALLOW A.I. TO ACCESS YOUR CAMERA.</h2>
+      <div style={{ display: 'flex',  marginTop: '16px', borderTop: '1px solid #FCFCFC', paddingTop: '8px' }}  >
+      <button onClick={handleDeny} style={{  backgroundColor: '#1A1B1C',  paddingLeft: '28px', paddingRight: '28px', transform: 'translateX(45px)', color: '#fcfcfca1',  fontWeight: 400, fontSize: '14px', lineHeight: '16px', letterSpacing: '-0.01562em',cursor: 'pointer' }}>Deny</button>
+      <button onClick={handleAllow} style={{  backgroundColor: '#1A1B1C', paddingLeft: '20px', paddingRight: '20px', transform: 'translateX(45px)', color: '#fcfcfc',  fontWeight: 600, fontSize: '14px', lineHeight: '16px', letterSpacing: '-0.01562em',cursor: 'pointer' }}>Allow</button>
+      </div>
+    </div>
+  </div>
 )}
          </>
   )
