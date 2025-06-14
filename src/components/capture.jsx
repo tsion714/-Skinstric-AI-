@@ -42,6 +42,7 @@ const Capture = () => {
       setJustCaptured(true);
       localStorage.setItem('capturedImage', imageDataURL);
       video.pause();
+      video.srcObject.getTracks().forEach(track => track.stop());
     }
   };
 
