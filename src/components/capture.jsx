@@ -13,7 +13,7 @@ const Capture = () => {
   const [justCaptured, setJustCaptured] = useState(false);
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
       .then(stream => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
