@@ -45,7 +45,7 @@
     padding-bottom: 4px;
     background-color: #E5E7EB; 
     color: #1F2937;            
-    cursor: pointer;
+    cursor: not-allowed;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 14px;
   }
@@ -59,7 +59,7 @@
     padding-bottom: 8px;
     background-color: #1A1B1C;
     color: #FCFCFC;
-    cursor: pointer;
+    cursor: not-allowed;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     font-size:  14px;
     transition: background-color 0.2s ease-in-out;
