@@ -81,6 +81,7 @@ const Testing = () => {
           <div style={{display: "flex", flexDirection:"column", alignItems:"center"}}></div>
           {step < 3 && !processing && (
               <input
+              style={{outline: 'none'}}
                 autoFocus
                 autoComplete='off'
                 className='Introduction-input'

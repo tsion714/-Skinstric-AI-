@@ -8,7 +8,7 @@
 .button-demographics{
     width: 153.88px;
     height: 153.88px;
-    background-color: #E5E7EB; 
+    background-color: #f3f4f6; 
     transform: rotate(45deg);
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
     transition: transform 300ms, background-color 300ms;
 }
 .button-demographics:hover {
-    background-color: #D1D5DB; 
+    background-color: #D1D5DB;
     transform: rotate(45deg) scale(1.05);
   }
   
