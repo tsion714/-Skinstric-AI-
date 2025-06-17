@@ -3,47 +3,108 @@ import leftbracket from '../Assets/Rectangle 2710.png';
 import rightbracket from '../Assets/Rectangle 2711.png';
 import '../css/capture.css';
 import capture from '../Assets/Group 40037.png'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Capture = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const streamRef = useRef(null);
   const [error, setError] = useState('');
   const [capturedImage, setCapturedImage] = useState(() => localStorage.getItem('capturedImage'));
   const [justCaptured, setJustCaptured] = useState(false);
-
+  const navigate = useNavigate();
+ 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
-      .then(stream => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.onloadedmetadata = () => {
-            videoRef.current.play().catch(e => console.error('play error:', e));
-          };
-        }
-      })
-      .catch(err => setError(err.message));
-  
+   localStorage.removeItem('capturedImage');
+  setCapturedImage(null);
+  setJustCaptured(false);
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+    .then(stream => {
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.onloadedmetadata = () => {
+          videoRef.current.play().catch(e => console.error('play error:', e));
+        };
+      }
+    })
+    .catch(err => setError(err.message));
+
     return () => {
-      videoRef.current?.srcObject?.getTracks().forEach(track => track.stop());
+      streamRef.current?.getTracks().forEach(track => track.stop());
     };
   }, []);
 
-  const handleCapture = () => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if (video && canvas) {
-      const ctx = canvas.getContext('2d');
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageDataURL = canvas.toDataURL('image/png');
-      setCapturedImage(imageDataURL);
-      setJustCaptured(true);
-      localStorage.setItem('capturedImage', imageDataURL);
-      video.pause();
-      video.srcObject.getTracks().forEach(track => track.stop());
+const handleCapture = () => {
+  const video = videoRef.current;
+  const canvas = canvasRef.current;
+
+  if (video && canvas) {
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const imageDataURL = canvas.toDataURL('image/png');
+    const base64Image = imageDataURL.split(',')[1];
+
+    video.style.visibility = 'hidden';
+
+     if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
     }
+
+    video.pause();
+    video.srcObject = null;
+
+    setCapturedImage(imageDataURL);
+    setJustCaptured(true);
+    localStorage.setItem('capturedImage', imageDataURL);
+
+    sendToAPI(base64Image);
+  }
+};
+
+
+const sendToAPI = async (base64Image) => {
+  try {
+    const response = await axios.post('https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo', {
+      image: base64Image,
+    });
+
+    const { age, gender, race } = response.data.data;
+
+    localStorage.setItem('analysisResult', JSON.stringify({ age, gender, race }));
+
+    console.log('Saved to localStorage:', { age, gender, race });
+    setJustCaptured(true);
+  } catch (error) {
+    console.error('Error sending to API:', error);
+  }
+};
+
+const handleRetake = () => {
+  setCapturedImage(null);
+  setJustCaptured(false);
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+    .then(stream => {
+      if (videoRef.current) {
+        videoRef.current.style.display = 'block';
+        videoRef.current.srcObject = stream;
+        videoRef.current.play().catch(console.error);
+      }
+    })
+    .catch(err => setError(err.message));
+};
+
+  const handleUsePhoto = () => {
+    navigate('/select');
   };
 
   return (
@@ -66,16 +127,16 @@ const Capture = () => {
       ref={videoRef}
       autoPlay
       playsInline
-      style={{position: 'absolute',top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover',}}
+      style={{position: 'absolute',top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover',zIndex: justCaptured ? -1 : 1, visibility: justCaptured ? 'hidden' : 'visible',}}
     />
-    {capturedImage && (
+   {capturedImage && justCaptured && (
     <img
       src={capturedImage}
       alt="Captured"
-      style={{ width: '100%', display: capturedImage ? 'block' : 'none' }}
+      style={{ position: 'absolute',top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', display: capturedImage ? 'block' : 'none' }}
     /> 
     )}
-    <img src={capturedImage} alt="Captured" style={{ width: '100%' }} />
+   
 <div style={{position: 'absolute', right: '2rem', top: '50%', transform: 'translateY(-50%)',zIndex: 20, display: 'flex', alignItems: 'center', gap: '0.75rem',}}>
 <div style={{ fontWeight: 600,fontSize: '0.875rem', letterSpacing: '-0.025em', lineHeight: '14px',color: '#FCFCFC',display: 'none', }}>TAKE PICTURE</div>
 <div className='takepicture'>
@@ -104,8 +165,8 @@ const Capture = () => {
           Preview
         </h2>
         <div style={{ display:'flex', justifyContent:'center', gap: '24px'}}>
-          <button className='retake-pic'>Retake</button>
-          <button className='usePhoto'>Use This Photo</button>
+          <button onClick={handleRetake} className='retake-pic'>Retake</button>
+          <button  onClick={handleUsePhoto} className='usePhoto'>Use This Photo</button>
         </div>
        </div>
        </>
