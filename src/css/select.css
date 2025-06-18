@@ -26,8 +26,8 @@
     transform: rotate(45deg) scale(1.05);
   }
   
-  .span-demofraphic{
-    transform: 'rotate(-45deg)',
+  .span-demofraphics{
+    transform: rotate(-45deg);
   }
   .button-Cosmotiic {
     width: 153.88px;
